@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  backend:
+    build: backend
+    env_file:
+      - variables.env
+  database:
+    image: mysql
+    env_file:
+      - variables.env
+  web:
+    build: frontend
+    env_file:
+      - variables.env
+    ports:
+      - 8080:80
+    volumes:
+     - ./frontend/templates:/etc/nginx/templates/
+  startup:
+    build: startup
+    env_file:
+      - variables.env
+    depends_on:
+      - database
+      - backend
+    
