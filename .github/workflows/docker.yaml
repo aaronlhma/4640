@@ -19,8 +19,22 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
       - 
-        name: build n push
+        name: build n push frontend
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/demo4640:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/demo4640frontend:latest
+          context: ./frontend
+      - name: build n push backend
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/demo4640backend:latest
+          context: ./backend
+      - name: build n push startup
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/demo4640startup:latest
+          context: ./startup
+          
