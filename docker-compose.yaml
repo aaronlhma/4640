@@ -2,7 +2,7 @@ version: '3'
 
 services:
   backend:
-    build: backend
+    image: aaronlhma/demo4640backend
     env_file:
       - variables.env
   database:
@@ -10,7 +10,7 @@ services:
     env_file:
       - variables.env
   web:
-    build: frontend
+    image: aaronlhma/demo4640frontend
     env_file:
       - variables.env
     ports:
@@ -18,7 +18,7 @@ services:
     volumes:
      - ./frontend/templates:/etc/nginx/templates/
   startup:
-    build: startup
+    image: aaronlhma/demo4640startup
     env_file:
       - variables.env
     depends_on:
